@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h1>Human Bingo</h1>
+    <nav>
+        <h2>How to Play</h2>
+        <p>Hey {{ g.username }}!</p>
+        <p>Match the description to one of the people in the room.</p>
+        <p>Make sure to add their name to cross it off!</p>
+        <p>Yell out <b>BINGO</b> once you've reached +++.</p>
+    </nav>
+    
+    <table>
+        <tbody>
+            {% for i in range(0, 25, 5) %}
+            <tr>
+                {% for j in range(i, i+5) %}
+                <td>
+                    <label>
+                        {% if j == 12 and i == 10 %}
+                        <span class="details">{{ "Free" }}</span>
+                        <input type="text" class="name" disabled/>
+                        {% else %}
+                        <span class="details">{{ bingo_card[j] }}</span>
+                        <input type="text" class="name"/>
+                        {% endif %}
+                        
+                    </label>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+
+{% endblock %}
+
